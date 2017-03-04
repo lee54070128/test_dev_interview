@@ -5,4 +5,4 @@
 git init
 git add .
 git remote add origin https://github.com/lee54070128/test_dev_interview.git
-git push -u origin dev
+git push -u origin master
