@@ -21,7 +21,7 @@ public class QueryTest {
         Query.BinarySearch(data,0,data.length-1,1);
         Query.BinarySearch(data,0,data.length-1,20);
         Query.BinarySearch(data,0,data.length-1,10);
-        String a = "aa";
+        String a = "aa你好";
         System.out.println(a.hashCode());
         Map<String,Integer> hash = new HashMap<String,Integer>();
     }
