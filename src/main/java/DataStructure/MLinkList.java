@@ -1,18 +1,18 @@
-package DataStructure.Linear;
+package DataStructure;
 
 /**
  * 说 明：实现链表
  * Created by wuzhu on 2017/3/10.
  */
 public class MLinkList {
-    private Node head; //head只是表示链表的头，并没有特定的值
+    private LNode head; //head只是表示链表的头，并没有特定的值
     private int size;
     public MLinkList(){
-        head = new Node();
+        head = new LNode();
         size = 0;
     }
 
-    public Node getHead() {
+    public LNode getHead() {
         return head;
     }
 
@@ -20,7 +20,7 @@ public class MLinkList {
         return size;
     }
 
-    public void setHead(Node head) {
+    public void setHead(LNode head) {
         this.head = head;
     }
 
@@ -31,23 +31,23 @@ public class MLinkList {
     /**
      * 说 明：获取第N节点
      * */
-    public Node getNode(int n){
+    public LNode getNode(int n){
         if (size <= 0)return head;
         if(size < n || n < 1){
             System.out.println("节点的索引应该在[" + 1 + "," + size + "]范围内，入参不在该范围！");
             return head;
         }
-        Node node = head;
+        LNode LNode = head;
         for (int i = 0; i < n; i++) {
-            node = node.getNext();
+            LNode = LNode.getNext();
         }
-        return node;
+        return LNode;
     }
 
     /**
      * 说 明：获取尾节点
      * */
-    public Node getTail(){
+    public LNode getTail(){
 
         return getNode(size);
     }
@@ -55,7 +55,7 @@ public class MLinkList {
     /**
      * 说 明：删除第N个节点
      * */
-    public Node deleteNode(int n){
+    public LNode deleteNode(int n){
         if(size == 0){
             System.out.println("链表长度为0，无法删除第"+n+"节点！");
             return head;
@@ -65,35 +65,35 @@ public class MLinkList {
             return head;
         }
 
-        Node pre = head;  //为了记录待删除节点前个节点
-        Node node = pre.getNext();
+        LNode pre = head;  //为了记录待删除节点前个节点
+        LNode LNode = pre.getNext();
         int i=0;
-        while(i<n-1 && node.getNext()!= null){
-            pre = node;
-            node = node.getNext();
+        while(i<n-1 && LNode.getNext()!= null){
+            pre = LNode;
+            LNode = LNode.getNext();
             i++;
         }
 
         //倒数第二个节点的下一个节点为null
-        if(node.getNext()!= null) {
-            pre.setNext(node.getNext());
+        if(LNode.getNext()!= null) {
+            pre.setNext(LNode.getNext());
         }else{
             pre.setNext(null);
         }
         size--;
-        return node;
+        return LNode;
     }
 
     /**
      * 说 明：删除最后一个节点
      * */
-    public Node deleteTail(){
+    public LNode deleteTail(){
         if(size == 0){
             return head;
         }
 
-        Node pre = head;  //为了记录倒数第二个节点
-        Node tail = pre.getNext();
+        LNode pre = head;  //为了记录倒数第二个节点
+        LNode tail = pre.getNext();
         while( tail.getNext()!= null){
             pre = tail;
             tail = tail.getNext();
@@ -109,26 +109,26 @@ public class MLinkList {
      * 新增一个节点
      */
     public void addNode(Integer value){
-        Node tail = getTail();
-        tail.setNext(new Node(value));
+        LNode tail = getTail();
+        tail.setNext(new LNode(value));
         size++;
     }
-    public void addNode(Integer value,Node next){
-        Node tail = getTail();
+    public void addNode(Integer value,LNode next){
+        LNode tail = getTail();
         tail.setNext(next);
         size++;
     }
 
-    public void addNode(Node node){
-        getTail().setNext(node);
+    public void addNode(LNode LNode){
+        getTail().setNext(LNode);
         size++;
     }
 
     /**
      * 说 明：打印一个节点
      * */
-    public void printNode(Node node){
-        System.out.println("节点值为："+node.getValue());
+    public void printNode(LNode LNode){
+        System.out.println("节点值为："+ LNode.getValue());
     }
 
     /**
@@ -147,17 +147,17 @@ public class MLinkList {
     /**
      * 说 明：链表删除前n个节点,返回原head节点
      * */
-    public Node deletePreNodes(int n){
+    public LNode deletePreNodes(int n){
         if(n<=0 ){
             return head;
         }
-        Node node=head;
-        Node point = head;
+        LNode LNode =head;
+        LNode point = head;
         for (int i = 0; i < n+1; i++) {
             if(point == null){
                 break;
             }
-            Node temp = point;  //记录第n-1个节点
+            LNode temp = point;  //记录第n-1个节点
             point = point.getNext();
             if(i==n){
                 temp.setNext(null);
@@ -165,10 +165,10 @@ public class MLinkList {
             if(point==null)break;
         }
         //这里需要注意：不能直接用point来赋值head，因为head并不是一个节点
-        head = new Node();
+        head = new LNode();
         head.setNext(point);
         size -= n;
-        return node;
+        return LNode;
     }
 
     /**
@@ -209,15 +209,15 @@ public class MLinkList {
      * */
     public void print(){
         StringBuffer log = new StringBuffer("");
-        Node node = head;
+        LNode LNode = head;
         if(size == 0){
             System.out.println("链表为空！");
             return;
         }
-        while(node.getNext() != null){
-            node = node.getNext();
-            log.append(node.getValue());
-            if(node.getNext() != null)log.append("->");
+        while(LNode.getNext() != null){
+            LNode = LNode.getNext();
+            log.append(LNode.getValue());
+            if(LNode.getNext() != null)log.append("->");
         }
         System.out.println("链表为："+log);
     }
@@ -226,8 +226,8 @@ public class MLinkList {
      * 说 明：判断一个链表是否是一个环
      * */
     public boolean checkCircleLink(){
-        Node slow = head;
-        Node fast = head;
+        LNode slow = head;
+        LNode fast = head;
         while(fast.getNext() != null && fast.getNext().getNext() != null){
             slow = slow.getNext();
             fast = fast.getNext().getNext();
@@ -250,15 +250,15 @@ public class MLinkList {
      * @return :链表位置，没找到返回-1
      * */
     public int checkCross(MLinkList link){
-        Node tail1 = getTail();
-        Node tail2 = link.getTail();
+        LNode tail1 = getTail();
+        LNode tail2 = link.getTail();
         if(tail1 != tail2){
             return -1;
         }
 
         int size1 = link.getSize();
-        Node longL ;
-        Node shortL ;
+        LNode longL ;
+        LNode shortL ;
         int index = 0;  //本链表的索引号
         if(size > size1){
             index = size-size1;

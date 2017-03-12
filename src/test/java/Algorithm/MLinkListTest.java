@@ -1,7 +1,7 @@
 package Algorithm;
 
-import DataStructure.Linear.MLinkList;
-import DataStructure.Linear.Node;
+import DataStructure.MLinkList;
+import DataStructure.LNode;
 import org.testng.annotations.Test;
 /**
  * 说 明：
@@ -79,17 +79,17 @@ public class MLinkListTest {
         MLinkList link = genenrate();
         link.addNode(7);
         link.addNode(8);
-        Node node = new Node(11);
-        Node node1 = new Node(12);
-        Node node2 = new Node(13);
-        link.addNode(node);
-        link.addNode(node1);
-        link.addNode(node2);
+        LNode LNode = new LNode(11);
+        LNode LNode1 = new LNode(12);
+        LNode LNode2 = new LNode(13);
+        link.addNode(LNode);
+        link.addNode(LNode1);
+        link.addNode(LNode2);
         MLinkList link2 = genenrate();
         System.out.println(link.checkCross(link2));
-        link2.addNode(node);
-        link2.addNode(node1);
-        link2.addNode(node2);
+        link2.addNode(LNode);
+        link2.addNode(LNode1);
+        link2.addNode(LNode2);
         link.print();
         link2.print();
         System.out.println(link.checkCross(link2));

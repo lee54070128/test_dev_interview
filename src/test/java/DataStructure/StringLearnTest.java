@@ -1,7 +1,6 @@
-package DataStructure.Linear;
+package DataStructure;
 
 import org.testng.Assert;
-import org.testng.Assert.*;
 import org.testng.annotations.Test;
 
 /**
